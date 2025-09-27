@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lagos House Price Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            margin: 50px auto;
+            width: 400px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .prediction {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #28a745;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🏠Lagos House Price Prediction</h2>
+        <form method="post">
+            <input type="number" name="Bedrooms" placeholder="Bedrooms" required>
+            <input type="number" name="Bathrooms" placeholder="Bathrooms" required>
+            <input type="number" name="Toilets" placeholder="Toilets" required>
+            <input type="number" name="Parking_Spaces" placeholder="Parking Spaces" required>
+
+            <select name="Transaction_Type" required>
+                <option value="">-- Select Transaction Type --</option>
+                {% for t in transaction_types %}
+                <option value="{{t}}">{{t}}</option>
+                {% endfor %}
+            </select>
+
+            <select name="Location" required>
+                <option value="">-- Select Location --</option>
+                {% for loc in locations %}
+                <option value="{{loc}}">{{loc}}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Predict Price</button>
+        </form>
+
+        {% if prediction %}
+        <div class="prediction">
+            Predicted Price: {{ prediction }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

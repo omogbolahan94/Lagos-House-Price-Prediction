@@ -3,7 +3,9 @@ import joblib
 import numpy as np
 import pandas as pd
 
+
 app = Flask(__name__)
+
 
 # Load saved pipeline (preprocessor + model)
 model = joblib.load("house_price_pipeline_rf.joblib")
